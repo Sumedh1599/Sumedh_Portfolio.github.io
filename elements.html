@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Sumedh Patil's Portfolio - SQL</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Projects</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Python</a></li>
+							<li><a href="generic.html">SEO</a></li>
+							<li class="active"><a href="elements.html">SQL</a></li>
+							<li><a href="webpage.html">HTML</a></li>
+							<li><a href="Cert.html">CERTIFICATIONS</a></li>
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/sumedh-patil-7ab0a21a6/" class="icon brands fa-Linkedin"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="https://github.com/Sumedh1599" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<h1>SQL<br />
+									Payroll Management</h1>
+								</header>
+
+								<!-- Text stuff -->
+									
+									<p>Explore the intricacies of payroll management tailored for a fictional insurance company through our SQL project. The project features four essential tables: Employee, Payroll, InsurancePolicy, and EmployeeInsurance, each meticulously crafted to capture and organize crucial data. The Employee table encompasses employee details, while the Payroll table efficiently manages payroll information. The InsurancePolicy table stores essential policy details, and the EmployeeInsurance table tracks policies sold to employees.</p>
+									<p>This project not only establishes a solid foundation for efficient payroll processing but also incorporates the functionality to import data seamlessly from CSV files. With a user-friendly approach, the SQL code enables the easy transfer of employee, payroll, insurance policy, and employee-insurance data from external CSV files into the respective database tables.
+
+									</p>
+									<p>Embrace the power of organized data management and streamlined payroll processes with our SQL Payroll Management System. Whether you're navigating employee information, calculating payroll details, or tracking insurance policies, this project provides a cohesive solution for the diverse needs of a fictional insurance company.</p>
+									
+								
+								
+									<p>Create a employee table/import from existing database or CSV File</p>
+
+									<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Payroll Management System</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+
+
+<h2>SQL Code:</h2>
+
+<pre>
+	-- Create Employee Table
+	CREATE TABLE Employee (
+		EmployeeID INT PRIMARY KEY,
+		FirstName VARCHAR(50),
+		LastName VARCHAR(50),
+		Position VARCHAR(50),
+		Department VARCHAR(50),
+		Salary DECIMAL(10, 2)
+	);
+	
+	-- Create Payroll Table
+	CREATE TABLE Payroll (
+		PayrollID INT PRIMARY KEY,
+		EmployeeID INT,
+		Month INT,
+		Year INT,
+		NetSalary DECIMAL(10, 2),
+		Deductions DECIMAL(10, 2),
+		Bonus DECIMAL(10, 2),
+		TotalSalary DECIMAL(10, 2),
+		FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+	);
+	
+	-- Create InsurancePolicy Table
+	CREATE TABLE InsurancePolicy (
+		PolicyID INT PRIMARY KEY,
+		PolicyName VARCHAR(50),
+		CoverageAmount DECIMAL(15, 2),
+		Premium DECIMAL(10, 2),
+		PolicyType VARCHAR(50)
+	);
+	
+	-- Create EmployeeInsurance Table (to track policies sold to employees)
+	CREATE TABLE EmployeeInsurance (
+		EmployeeID INT,
+		PolicyID INT,
+		PurchaseDate DATE,
+		FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
+		FOREIGN KEY (PolicyID) REFERENCES InsurancePolicy(PolicyID)
+	);
+	
+	-- Import Employee Data from CSV
+	COPY Employee(EmployeeID, FirstName, LastName, Position, Department, Salary)
+	FROM '/path/to/employee_data.csv' DELIMITER ',' CSV HEADER;
+	
+	-- Import Payroll Data from CSV
+	COPY Payroll(PayrollID, EmployeeID, Month, Year, NetSalary, Deductions, Bonus, TotalSalary)
+	FROM '/path/to/payroll_data.csv' DELIMITER ',' CSV HEADER;
+	
+	-- Import Insurance Policy Data from CSV
+	COPY InsurancePolicy(PolicyID, PolicyName, CoverageAmount, Premium, PolicyType)
+	FROM '/path/to/insurance_policy_data.csv' DELIMITER ',' CSV HEADER;
+	
+	-- Import Employee Insurance Data from CSV
+	COPY EmployeeInsurance(EmployeeID, PolicyID, PurchaseDate)
+	FROM '/path/to/employee_insurance_data.csv' DELIMITER ',' CSV HEADER;
+</pre>
+
+</body>
+</html>
+
+							</section>
+							</div>
+								<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<form method="post" action="mailto:sumedh15patil@gmail.com">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>
+								London, United Kingdom</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">Upon request</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="mailto:sumedh15patil@gmail.com">sumedh15patil@gmail.com</a></p>
+							</section>
+							<section>
+								<h3>Linkedin</h3>
+								<p><a href="https://www.linkedin.com/in/sumedh-patil-7ab0a21a6/">Sumedh Patil</a></p>
+							</section>
+							<section>
+						</section>
+					</footer>
+
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; Portfolio</li><li>Design By: <a href="https://www.linkedin.com/in/sumedh-patil-7ab0a21a6/">Sumedh Patil</a></li></ul>
+				</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
